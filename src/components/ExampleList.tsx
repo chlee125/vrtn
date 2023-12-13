@@ -1,7 +1,4 @@
-import { Fragment, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
-import { ScrollArea } from '@components/ui/scroll-area.tsx'
-import { Separator } from '@components/ui/separator.tsx'
+import { Link, useLocation } from 'react-router-dom'
 
 const itemList = [
   { name: 'accordion-demo', path: 'accordion-demo' },
@@ -57,18 +54,9 @@ const itemList = [
   { name: 'textarea-with-label', path: 'textarea-with-label' },
   { name: 'textarea-with-text', path: 'textarea-with-text' },
   { name: 'toast-demo', path: 'toast-demo' },
-  { name: 'toast-destructive', path: 'toast-destructive' },
-  { name: 'toast-simple', path: 'toast-simple' },
-  { name: 'toast-with-title', path: 'toast-with-title' },
-  { name: 'toast-with-action', path: 'toast-with-action' },
   { name: 'tooltip-demo', path: 'tooltip-demo' },
   { name: 'typography-blockquote', path: 'typography-blockquote' },
   { name: 'typography-demo', path: 'typography-demo' },
-  { name: 'typography-h1', path: 'typography-h1' },
-  { name: 'typography-h2', path: 'typography-h2' },
-  { name: 'typography-h3', path: 'typography-h3' },
-  { name: 'typography-h4', path: 'typography-h4' },
-  { name: 'typography-inline-code', path: 'typography-inline-code' },
   { name: 'typography-large', path: 'typography-large' },
   { name: 'typography-lead', path: 'typography-lead' },
   { name: 'typography-list', path: 'typography-list' },
@@ -84,30 +72,24 @@ const itemList = [
   { name: 'toggle-with-text', path: 'toggle-with-text' },
 ]
 export default function ExampleList() {
-  const navigate = useNavigate()
   const location = useLocation()
-  const [path, setPath] = useState(location.pathname)
-  const handleListItemClick = (item: { name: string; path: string }) => {
-    navigate(item.path)
-    setPath(item.path)
-  }
 
   return (
-    <ScrollArea className="h-96 w-52 rounded-md border">
-      <div className="p-4">
-        {itemList.map((item) => (
-          <Fragment>
-            <div
-              className="cursor-pointer text-sm"
-              key={item.path}
-              onClick={() => handleListItemClick(item)}
-            >
-              {item.name}
-            </div>
-            <Separator className="my-2" />
-          </Fragment>
-        ))}
-      </div>
-    </ScrollArea>
+    <div
+      className='hidden md:block fixed z-20 inset-0 top-[3.8125rem] left-[max(0px,calc(50%-45rem))] right-auto w-[19rem] pb-10 pl-8 pr-6 overflow-y-auto'>
+      <nav id='nav' className='text-sm leading-6 relative'>
+        <ul>
+          {itemList.map(item => (
+            <Link to={item.path}
+              className={`group flex items-center text-sm leading-6 mb-4 font-semibold ${location.pathname.includes(`/${item.path}`) ?'text-blue-500' : ''} `}
+              >
+              <li key={item.path}>
+                {item.name}
+              </li>
+            </Link>
+          ))}
+        </ul>
+      </nav>
+    </div>
   )
 }

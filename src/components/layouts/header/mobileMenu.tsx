@@ -35,7 +35,7 @@ export default function MobileMenu({ menuItems }) {
       <DropdownMenuContent className="w-56">
         {menuItems.map((item) => {
           return (
-            <Link to={item.path}>
+            <Link to={item.path} key={item.path}>
               <DropdownMenuItem>
                 <span>{item.name}</span>
               </DropdownMenuItem>

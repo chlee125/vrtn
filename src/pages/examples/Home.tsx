@@ -3,9 +3,11 @@ import ExampleList from '@components/ExampleList.tsx'
 
 export default function Home() {
   return (
-    <main className={'flex'}>
+    <main className={'container'}>
+      <div>
       <ExampleList />
-      <div className="container">
+      </div>
+      <div className='md:ml-[19rem]'>
         <Outlet />
       </div>
     </main>
