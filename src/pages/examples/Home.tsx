@@ -5,9 +5,9 @@ export default function Home() {
   return (
     <main className={'container'}>
       <div>
-      <ExampleList />
+        <ExampleList />
       </div>
-      <div className='md:ml-[19rem]'>
+      <div className="md:ml-[19rem]">
         <Outlet />
       </div>
     </main>

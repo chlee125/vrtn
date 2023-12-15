@@ -75,17 +75,19 @@ export default function ExampleList() {
   const location = useLocation()
 
   return (
-    <div
-      className='hidden md:block fixed z-20 inset-0 top-[3.8125rem] left-[max(0px,calc(50%-45rem))] right-auto w-[19rem] pb-10 pl-8 pr-6 overflow-y-auto'>
-      <nav id='nav' className='text-sm leading-6 relative'>
+    <div className="fixed inset-0 left-[max(0px,calc(50%-45rem))] right-auto top-[3.8125rem] z-20 hidden w-[19rem] overflow-y-auto pb-10 pl-8 pr-6 md:block">
+      <nav id="nav" className="relative text-sm leading-6">
         <ul>
-          {itemList.map(item => (
-            <Link to={item.path}
-              className={`group flex items-center text-sm leading-6 mb-4 font-semibold ${location.pathname.includes(`/${item.path}`) ?'text-blue-500' : ''} `}
-              >
-              <li key={item.path}>
-                {item.name}
-              </li>
+          {itemList.map((item) => (
+            <Link
+              to={item.path}
+              className={`group mb-4 flex items-center text-sm font-semibold leading-6 ${
+                location.pathname.includes(`/${item.path}`)
+                  ? 'text-blue-500'
+                  : ''
+              } `}
+            >
+              <li key={item.path}>{item.name}</li>
             </Link>
           ))}
         </ul>
